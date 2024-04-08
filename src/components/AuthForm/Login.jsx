@@ -1,6 +1,9 @@
-import { Alert, AlertIcon, Button, Input } from "@chakra-ui/react";
+import { Alert,Link, AlertIcon, Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import useLogin from "../../hooks/useLogin";
+import { auth } from "../../firebase/firebase";
+import { sendPasswordResetEmail } from "firebase/auth"; 
+
 
 const Login = () => {
 	const [inputs, setInputs] = useState({
@@ -8,6 +11,21 @@ const Login = () => {
 		password: "",
 	});
 	const { loading, error, login } = useLogin();
+
+	const handleForgotPassword = () => {
+		const email = inputs.email;
+		if (email) {
+		  sendPasswordResetEmail(auth, email)
+			.then(() => {
+			  alert("Password reset email sent. Please check your inbox.");
+			})
+			.catch((error) => {
+			  alert(error.message);
+			});
+		} else {
+		  alert("Please enter your email address.");
+		}
+	  };
 	return (
 		<>
 			<Input
@@ -42,6 +60,22 @@ const Login = () => {
 			>
 				Log in
 			</Button>
+			<Link
+        mt={2}
+        fontSize={10}
+        p={1}
+        color={"white"}
+        cursor={"pointer"}
+        onClick={handleForgotPassword}
+        _hover={{ backgroundColor: "red.200", border:"1px solid black", color: "black" }}
+        background={"red"}
+        borderRadius={5}
+		
+        px={3}
+        py={1}
+      >
+        Forgot password?
+      </Link>
 		</>
 	);
 };

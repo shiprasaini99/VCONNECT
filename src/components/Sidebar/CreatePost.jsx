@@ -5,6 +5,7 @@ import {
 	Flex,
 	Image,
 	Input,
+	Text,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -88,11 +89,23 @@ const CreatePost = () => {
 
 						<Input type='file' hidden ref={imageRef} onChange={handleImageChange} />
 
+						<Flex >
+						<Box mx={2}>
+						<Text fontSize={20} fontWeight={"bold"}>Click here to upload images 👉</Text>
+						</Box>
+
+						<Box mx={2}>
 						<BsFillImageFill
 							onClick={() => imageRef.current.click()}
-							style={{ marginTop: "15px", marginLeft: "5px", cursor: "pointer" }}
-							size={16}
+							style={{ marginTop: "9px", marginLeft: "5px", cursor: "pointer"}}
+							
+							size={30}
 						/>
+						</Box>
+						</Flex>
+
+						
+						
 						{selectedFile && (
 							<Flex mt={5} w={"full"} position={"relative"} justifyContent={"center"}>
 								<Image src={selectedFile} alt='Selected img' />

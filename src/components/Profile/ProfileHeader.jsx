@@ -17,7 +17,7 @@ const ProfileHeader = () => {
 			<AvatarGroup size={{ base: "xl", md: "2xl" }} justifySelf={"center"} alignSelf={"flex-start"} mx={"auto"}>
 				<Avatar src={userProfile.profilePicURL} alt='As a programmer logo' />
 			</AvatarGroup>
-
+			
 			<VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
 				<Flex
 					gap={4}
@@ -68,13 +68,13 @@ const ProfileHeader = () => {
 							{userProfile.followers.length}
 						</Text>
 						Followers
-					</Text>
+                </Text>
 					<Text fontSize={{ base: "xs", md: "sm" }}>
 						<Text as='span' fontWeight={"bold"} mr={1}>
 							{userProfile.following.length}
 						</Text>
 						Following
-					</Text>
+                </Text>
 				</Flex>
 				<Flex alignItems={"center"} gap={4}>
 					<Text fontSize={"sm"} fontWeight={"bold"}>
@@ -82,7 +82,7 @@ const ProfileHeader = () => {
 					</Text>
 				</Flex>
 				<Text fontSize={"sm"}>{userProfile.bio}</Text>
-			</VStack>
+			</VStack>			
 			{isOpen && <EditProfile isOpen={isOpen} onClose={onClose} />}
 		</Flex>
 	);
